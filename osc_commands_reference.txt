@@ -1,0 +1,136 @@
+# AbletonOSC Commands Reference
+# Based on https://github.com/ideoforms/AbletonOSC
+
+## Song Methods (no response expected, just execute)
+/live/song/start_playing
+/live/song/stop_playing
+/live/song/continue_playing
+/live/song/stop_all_clips
+/live/song/create_audio_track
+/live/song/create_midi_track
+/live/song/create_return_track
+/live/song/create_scene
+/live/song/delete_return_track
+/live/song/delete_scene
+/live/song/delete_track
+/live/song/duplicate_scene
+/live/song/duplicate_track
+/live/song/jump_by [beats]
+/live/song/jump_to_prev_cue
+/live/song/jump_to_next_cue
+/live/song/redo
+/live/song/undo
+/live/song/tap_tempo
+/live/song/trigger_session_record
+/live/song/capture_and_insert_scene
+/live/song/capture_midi
+/live/song/re_enable_automation
+/live/song/set_or_delete_cue
+
+## Song Properties (read/write)
+/live/song/get/tempo -> returns tempo value
+/live/song/set/tempo [value]
+/live/song/get/metronome -> returns 0 or 1
+/live/song/set/metronome [0|1]
+/live/song/get/loop -> returns 0 or 1
+/live/song/set/loop [0|1]
+/live/song/get/loop_start
+/live/song/set/loop_start [beats]
+/live/song/get/loop_length
+/live/song/set/loop_length [beats]
+/live/song/get/current_song_time
+/live/song/set/current_song_time [beats]
+/live/song/get/groove_amount
+/live/song/set/groove_amount [0.0-1.0]
+/live/song/get/record_mode
+/live/song/set/record_mode [0|1]
+/live/song/get/session_record
+/live/song/set/session_record [0|1]
+/live/song/get/arrangement_overdub
+/live/song/set/arrangement_overdub [0|1]
+/live/song/get/signature_numerator
+/live/song/set/signature_numerator [value]
+/live/song/get/signature_denominator
+/live/song/set/signature_denominator [value]
+/live/song/get/root_note
+/live/song/set/root_note [0-11]
+/live/song/get/scale_name
+/live/song/set/scale_name [name]
+
+## Song Properties (read-only)
+/live/song/get/is_playing -> returns 0 or 1
+/live/song/get/can_redo -> returns 0 or 1
+/live/song/get/can_undo -> returns 0 or 1
+/live/song/get/song_length -> returns length in beats
+/live/song/get/session_record_status
+
+## Track Information
+/live/song/get/num_tracks -> returns number of tracks
+/live/song/get/track_names -> returns tuple of track names
+/live/song/get/track_names [min] [max] -> returns subset of track names
+/live/song/get/track_data [min] [max] [properties...] -> returns track data
+
+## Scene Information
+/live/song/get/num_scenes -> returns number of scenes
+/live/song/get/scenes/name -> returns scene names
+
+## Cue Points
+/live/song/get/cue_points -> returns cue point data
+
+## Track API
+/live/track/get/name [track_index]
+/live/track/set/name [track_index] [name]
+/live/track/get/volume [track_index]
+/live/track/set/volume [track_index] [value]
+/live/track/get/panning [track_index]
+/live/track/set/panning [track_index] [value]
+/live/track/get/mute [track_index]
+/live/track/set/mute [track_index] [0|1]
+/live/track/get/solo [track_index]
+/live/track/set/solo [track_index] [0|1]
+/live/track/get/arm [track_index]
+/live/track/set/arm [track_index] [0|1]
+/live/track/get/send [track_index] [send_index]
+/live/track/set/send [track_index] [send_index] [value]
+/live/track/get/num_devices [track_index]
+
+## Device API
+/live/device/get/name [track_index] [device_index]
+/live/device/get/class_name [track_index] [device_index]
+/live/device/get/num_parameters [track_index] [device_index]
+/live/device/get/parameters/name [track_index] [device_index]
+/live/device/get/parameters/value [track_index] [device_index]
+/live/device/get/parameters/min [track_index] [device_index]
+/live/device/get/parameters/max [track_index] [device_index]
+/live/device/get/parameter/value [track_index] [device_index] [param_index]
+/live/device/set/parameter/value [track_index] [device_index] [param_index] [value]
+
+## Clip API
+/live/clip/get/name [track_index] [clip_index]
+/live/clip/set/name [track_index] [clip_index] [name]
+/live/clip/get/length [track_index] [clip_index]
+/live/clip/get/is_playing [track_index] [clip_index]
+/live/clip/fire [track_index] [clip_index]
+/live/clip/stop [track_index] [clip_index]
+
+## Scene API
+/live/scene/get/name [scene_index]
+/live/scene/set/name [scene_index] [name]
+/live/scene/fire [scene_index]
+
+## View API
+/live/view/get/selected_track -> returns track index
+/live/view/set/selected_track [track_index]
+/live/view/get/selected_scene -> returns scene index
+/live/view/set/selected_scene [scene_index]
+
+## Application API
+/live/application/get/version
+/live/application/get/average_process_usage
+
+## Test
+/live/test -> returns "ok" if AbletonOSC is running
+
+## Default Ports
+Ableton receives OSC on: 11000
+Ableton sends OSC on: 11001
